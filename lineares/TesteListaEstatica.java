@@ -20,7 +20,7 @@ public class TesteListaEstatica {
 		lista.inserir(28);
 		lista.inserir(91);
 		System.out.println("Lista original = "+lista.exibir());
-		/*
+		
 		ListaEstatica novaLista;
 		novaLista = lista.dividir();
 		System.out.println("Primeira lista (original pela metade) = "+lista.exibir());
@@ -39,7 +39,7 @@ public class TesteListaEstatica {
 		terceira.retirar(200);
 		System.out.println("Lista original (sem 100) = "+novaLista.exibir());
 		System.out.println("Lista copiada (sem 200) = "+terceira.exibir());
-		*/
+		
 	}
 
 
