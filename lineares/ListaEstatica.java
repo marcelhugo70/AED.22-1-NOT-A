@@ -1,6 +1,6 @@
 package lineares;
 
-public class ListaEstatica {
+public class ListaEstatica implements Lista {
 	private int[] info;
 	private int tamanho;
 
@@ -9,6 +9,7 @@ public class ListaEstatica {
 		tamanho = 0;
 	}
 
+	@Override
 	public void inserir(int valor) {
 		if (tamanho == info.length) {
 			this.redimensionar();
@@ -25,6 +26,7 @@ public class ListaEstatica {
 		info = novo;
 	}
 
+	@Override
 	public String exibir() {
 		String str = "[";
 		for (int i = 0; i < tamanho; i++) {
@@ -33,6 +35,7 @@ public class ListaEstatica {
 		return str + "]";
 	}
 
+	@Override
 	public int buscar(int valor) {
 		for (int i = 0; i < tamanho; i++) {
 			if (info[i] == valor) {
@@ -42,6 +45,7 @@ public class ListaEstatica {
 		return -1;
 	}
 
+	@Override
 	public void retirar(int valor) {
 		int index = buscar(valor);
 		if (index != -1) {
@@ -52,12 +56,14 @@ public class ListaEstatica {
 		}
 	}
 
+	@Override
 	public boolean estaVazia() {
 		return (tamanho == 0);
 	}
 
-	public ListaEstatica copiar() {
-		ListaEstatica copia = new ListaEstatica();
+	@Override
+	public Lista copiar() {
+		Lista copia = new ListaEstatica();
 
 		for (int i = 0; i < this.tamanho; i++) {
 			copia.inserir(this.info[i]);
@@ -66,21 +72,24 @@ public class ListaEstatica {
 		return copia;
 	}
 	
-	public void concatenar(ListaEstatica outra)
+	@Override
+	public void concatenar(Lista outra)
     {
         for (int i = 0; i < outra.getTamanho(); i++)
         {
-            this.inserir(outra.info[i]);
+            this.inserir(outra.pegar(i));
         }
     }
 	
+	@Override
 	public int getTamanho() {
 		return tamanho;
 	}
 	
-    public ListaEstatica dividir()
+    @Override
+	public Lista dividir()
     {
-        ListaEstatica outraParte = new ListaEstatica();
+        Lista outraParte = new ListaEstatica();
         int metade = this.tamanho / 2;
 
         for (int i = metade; i < this.tamanho; i++)
@@ -91,4 +100,10 @@ public class ListaEstatica {
         this.tamanho = metade;
         return outraParte;
     }
+
+
+	@Override
+	public int pegar(int posicao) {
+		return info[posicao];
+	}
 }
