@@ -1,13 +1,13 @@
 package lineares;
 
-public class ListaEncadeada implements Lista {
-	private NoLista primeiro;
-	private NoLista ultimo;
+public class ListaEncadeada<T> implements Lista<T> {
+	private NoLista<T> primeiro;
+	private NoLista<T> ultimo;
 	private int qtdElem;
 
 	@Override
-	public void inserir(int valor) {
-		NoLista novo = new NoLista();
+	public void inserir(T valor) {
+		NoLista<T> novo = new NoLista<>();
 		novo.setInfo(valor);
 		if (this.estaVazia()) {
 			primeiro = novo;
@@ -21,7 +21,7 @@ public class ListaEncadeada implements Lista {
 	@Override
 	public String exibir() {
 		String resultado = "[";
-		NoLista p = primeiro;
+		NoLista<T> p = primeiro;
 		while (p != null) {
 			// processar o nó
 			resultado += p.getInfo() + ", ";
@@ -31,12 +31,12 @@ public class ListaEncadeada implements Lista {
 	}
 
 	@Override
-	public int buscar(int valor) {
+	public int buscar(T valor) {
 		int posicao = 0;
-		NoLista p = primeiro;
+		NoLista<T> p = primeiro;
 		while (p != null) {
 			// processar o nó
-			if (p.getInfo() == valor) {
+			if (p.getInfo().equals(valor)) {
 				return posicao;
 			}
 			p = p.getProximo();
@@ -46,11 +46,11 @@ public class ListaEncadeada implements Lista {
 	}
 
 	@Override
-	public void retirar(int valor) {
-		NoLista anterior = null;
-		NoLista p = primeiro;
+	public void retirar(T valor) {
+		NoLista<T> anterior = null;
+		NoLista<T> p = primeiro;
 
-		while (p != null && p.getInfo() != valor) {
+		while (p != null && !p.getInfo().equals(valor)) {
 			anterior = p;
 			p = p.getProximo();
 		}
@@ -61,11 +61,11 @@ public class ListaEncadeada implements Lista {
 			} else {
 				anterior.setProximo(p.getProximo());
 			}
+			qtdElem--;
 		}
 		if (ultimo == p) {
 			ultimo = anterior;
 		}
-		qtdElem--;
 	}
 
 	@Override
@@ -74,9 +74,9 @@ public class ListaEncadeada implements Lista {
 	}
 
 	@Override
-	public Lista copiar() { // Contribuição da Ana Carolina
-		Lista copia = new ListaEncadeada();
-		NoLista p = primeiro;
+	public Lista<T> copiar() { // Contribuição da Ana Carolina
+		Lista<T> copia = new ListaEncadeada<>();
+		NoLista<T> p = primeiro;
 		while (p != null) {
 			copia.inserir(p.getInfo());
 			p = p.getProximo();
@@ -85,7 +85,7 @@ public class ListaEncadeada implements Lista {
 	}
 
 	@Override
-	public void concatenar(Lista outra) {
+	public void concatenar(Lista<T> outra) {
 		for (int i = 0; i < outra.getTamanho(); i++) {
 			this.inserir(outra.pegar(i));
 		}
@@ -97,11 +97,11 @@ public class ListaEncadeada implements Lista {
 	}
 
 	@Override
-	public Lista dividir() {
-		Lista outraMetade = new ListaEncadeada();
+	public Lista<T> dividir() {
+		Lista<T> outraMetade = new ListaEncadeada<>();
 		int metade = this.qtdElem / 2;
 		int contador = 1;
-		NoLista p = primeiro;
+		NoLista<T> p = primeiro;
 
 		while (p != null) {
 			if (contador > metade) {
@@ -119,12 +119,12 @@ public class ListaEncadeada implements Lista {
 	}
 
 	@Override
-	public int pegar(int posicao) { // Contribuição do Guilherme
+	public T pegar(int posicao) { // Contribuição do Guilherme
 		if (posicao < 0 || posicao >= this.getTamanho()) {
 			throw new IndexOutOfBoundsException("Posicao = " + posicao + "; Tamanho = " + this.getTamanho());
 		}
 		int resultado = 0;
-		NoLista p = primeiro;
+		NoLista<T> p = primeiro;
 
 		while (p != null) {
 			if (resultado == posicao) {
@@ -133,7 +133,7 @@ public class ListaEncadeada implements Lista {
 			p = p.getProximo();
 			resultado++;
 		}
-		return -1; // nunca deveria chegar aqui
+		return null; // nunca deveria chegar aqui
 	}
 
 }
