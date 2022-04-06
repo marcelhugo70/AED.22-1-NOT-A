@@ -1,6 +1,6 @@
 package lineares;
 
-public class FilaVetor<T> implements Fila<T> {  // contribuição do Henrique
+public class FilaVetor<T> implements Fila<T> { // contribuição do Henrique
 	private T[] info;
 	private int limite;
 	private int tamanho = 0;
@@ -56,24 +56,52 @@ public class FilaVetor<T> implements Fila<T> {  // contribuição do Henrique
 	private boolean estaCheia() {
 		return this.tamanho == this.limite;
 	}
-	
+
 	@Override
-    public String toString(){
-        
-        String filaString = "";
-        
-        if(!estaVazio()){        
-        	int posicao;
-            for(int i=0; i<this.tamanho; i++){
-            	posicao = (this.inicio + i) % this.limite;
-                filaString += info[posicao] + ", ";
-            }
-        
-            filaString = filaString.substring(0, filaString.length() - 2);
-        
-        }
-        
-        return filaString;
-        
-    }
+	public String toString() {
+
+		String filaString = "";
+
+		if (!estaVazio()) {
+			int posicao;
+			for (int i = 0; i < this.tamanho; i++) {
+				posicao = (this.inicio + i) % this.limite;
+				filaString += info[posicao] + ", ";
+			}
+
+			filaString = filaString.substring(0, filaString.length() - 2);
+
+		}
+
+		return filaString;
+	}
+
+	public FilaVetor<T> concatenar(FilaVetor<T> f2) {
+		FilaVetor<T> novaFila = new FilaVetor<>(this.getLimite() + f2.getLimite());
+		for (int i = 0; i < this.getTamanho(); i++) {
+			novaFila.inserir(this.pegar(i));
+		}
+
+		for (int i = 0; i < f2.getTamanho(); i++) {
+			novaFila.inserir(f2.pegar(i));
+		}
+
+		return novaFila;
+	}
+
+	private int getLimite() {
+		return this.limite;
+	}
+
+	private T pegar(int pos) {
+		if (pos < 0 || pos >= this.getTamanho())
+			throw new IndexOutOfBoundsException("Posição inválida");
+
+		return this.info[(this.inicio + pos) % this.limite];
+	}
+
+	public int getTamanho() {
+		return this.tamanho;
+	}
+
 }
