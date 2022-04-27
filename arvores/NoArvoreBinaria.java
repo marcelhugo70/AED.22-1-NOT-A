@@ -31,7 +31,7 @@ public class NoArvoreBinaria<T>
     {
         return esq;
     }
-    private void setEsq(NoArvoreBinaria<T> esq)
+    public void setEsq(NoArvoreBinaria<T> esq)
     {
         this.esq = esq;
     }
@@ -39,7 +39,7 @@ public class NoArvoreBinaria<T>
     {
         return dir;
     }
-    private void setDir(NoArvoreBinaria<T> dir)
+    public void setDir(NoArvoreBinaria<T> dir)
     {
         this.dir = dir;
     }
