@@ -21,7 +21,7 @@ public class NoArvoreBinaria<T>
     {
         return info;
     }
-    private void setInfo(T info)
+    public void setInfo(T info)
     {
         if (info == null)
             throw new InvalidParameterException("Info não pode ser nulo");

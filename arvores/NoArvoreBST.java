@@ -34,4 +34,12 @@ public class NoArvoreBST<T extends Comparable<T>> extends NoArvoreBinaria<T> {
 		}
 		return null;
 	}
+
+	public boolean ehFolha() {
+		return (this.getEsq() == null && this.getDir() == null);
+	}
+
+	public boolean temApenasUmFilho() {
+		return (this.getEsq() != null ^ this.getDir() != null);
+	}
 }
