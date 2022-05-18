@@ -19,8 +19,7 @@ public class TesteArvoreBST {
 		System.out.println("Sandra->" + arvore.buscar("Sandra").getInfo());
 		System.out.println("Fantasminha->" + arvore.buscar("Fantasminha"));
 
-		
-		// lista 7
+		// lista 7 e 8
 		ArvoreBST<Integer> arv2 = new ArvoreBST<>();
 		System.out.println("Quantos nós?");
 		Scanner s = new Scanner(System.in);
@@ -30,6 +29,15 @@ public class TesteArvoreBST {
 		for (int i = 0; i < vetor.length; i++) {
 			vetor[i] = r.nextInt(100000);
 			arv2.inserir(vetor[i]);
+		}
+
+		System.out.println("Menor elemento:" + arv2.localizarMenorElemento());
+		System.out.println("Maior elemento:" + arv2.localizarMaiorElemento());
+		for (int i = 0; i < vetor.length; i++) {
+			System.out.println("Sucessor de :" + vetor[i] + " = " + arv2.getSucessor(vetor[i]));
+		}
+		for (int i = 0; i < vetor.length; i++) {
+			System.out.println("Antecessor de :" + vetor[i] + " = " + arv2.getAntecessor(vetor[i]));
 		}
 		System.out.println(arv2.toString());
 		int pos;
