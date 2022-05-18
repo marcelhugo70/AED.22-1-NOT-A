@@ -40,6 +40,7 @@ public class TesteArvoreBST {
 			System.out.println("Antecessor de :" + vetor[i] + " = " + arv2.getAntecessor(vetor[i]));
 		}
 		System.out.println(arv2.toString());
+		System.out.println(arv2.toStringOrdered());
 		int pos;
 		while (qtde != 0) {
 			pos = r.nextInt(vetor.length);

@@ -160,4 +160,11 @@ public class ArvoreBST<T extends Comparable<T>> extends ArvoreBinariaAbstract<T>
 			return antecessor;
 		}
 	}
+	public String toStringOrdered()
+    {
+        String retorno = "";
+        if (!this.vazia())
+            retorno += ((NoArvoreBST<T>)this.getRaiz()).imprimeEmOrdem();
+        return retorno;
+    }
 }
